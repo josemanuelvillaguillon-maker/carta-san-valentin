@@ -722,8 +722,269 @@
             }
         }
 
+        /* Galería de fotos en forma de abanico */
+        .photo-fan-background {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .photo-item {
+            position: absolute;
+            width: 180px;
+            height: 240px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            border: 5px solid white;
+            pointer-events: all;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.15) !important;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            z-index: 50;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Posiciones en abanico - Lado izquierdo */
+        .photo-item:nth-child(1) {
+            left: 5%;
+            top: 15%;
+            transform: rotate(-15deg);
+        }
+
+        .photo-item:nth-child(2) {
+            left: 8%;
+            top: 35%;
+            transform: rotate(-8deg);
+        }
+
+        .photo-item:nth-child(3) {
+            left: 6%;
+            top: 55%;
+            transform: rotate(-5deg);
+        }
+
+        .photo-item:nth-child(4) {
+            left: 9%;
+            bottom: 10%;
+            transform: rotate(-12deg);
+        }
+
+        /* Posiciones en abanico - Lado derecho */
+        .photo-item:nth-child(5) {
+            right: 5%;
+            top: 15%;
+            transform: rotate(15deg);
+        }
+
+        .photo-item:nth-child(6) {
+            right: 8%;
+            top: 35%;
+            transform: rotate(8deg);
+        }
+
+        .photo-item:nth-child(7) {
+            right: 6%;
+            top: 55%;
+            transform: rotate(5deg);
+        }
+
+        .photo-item:nth-child(8) {
+            right: 9%;
+            bottom: 10%;
+            transform: rotate(12deg);
+        }
+
+        /* Lightbox para ver imágenes grandes */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 15px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: var(--btn-primary);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--btn-primary);
+        }
+
+        .lightbox-prev {
+            left: 30px;
+        }
+
+        .lightbox-next {
+            right: 30px;
+        }
+
         /* Responsividad */
         @media (max-width: 600px) {
+            .photo-item {
+                width: 100px;
+                height: 140px;
+                border: 3px solid white;
+            }
+
+            .photo-item:nth-child(1) {
+                left: 2%;
+                top: 10%;
+            }
+
+            .photo-item:nth-child(2) {
+                left: 1%;
+                top: 28%;
+            }
+
+            .photo-item:nth-child(3) {
+                left: 2%;
+                top: 46%;
+            }
+
+            .photo-item:nth-child(4) {
+                left: 1%;
+                bottom: 8%;
+            }
+
+            .photo-item:nth-child(5) {
+                right: 2%;
+                top: 10%;
+            }
+
+            .photo-item:nth-child(6) {
+                right: 1%;
+                top: 28%;
+            }
+
+            .photo-item:nth-child(7) {
+                right: 2%;
+                top: 46%;
+            }
+
+            .photo-item:nth-child(8) {
+                right: 1%;
+                bottom: 8%;
+            }
+
+            .lightbox img {
+                max-width: 95%;
+                max-height: 80%;
+            }
+
+            .lightbox-close {
+                top: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 30px;
+            }
+
+            .lightbox-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 35px;
+            }
+
+            .lightbox-prev {
+                left: 15px;
+            }
+
+            .lightbox-next {
+                right: 15px;
+            }
+
             h1 {
                 font-size: 3.5rem;
             }
@@ -816,16 +1077,56 @@
         <button id="btn-no" onmouseover="muevete()" onclick="muevete()">Ups... botón equivocado 🤭</button>
     </div>
 
+    <!-- Galería de fotos en forma de abanico (detrás del itinerario) -->
+    <div class="photo-fan-background" id="photoFan" style="display: none;">
+        <div class="photo-item" onclick="openLightbox(0)">
+            <img src="Imagenes_Vida/1.jpeg" alt="Momento 1">
+        </div>
+        <div class="photo-item" onclick="openLightbox(1)">
+            <img src="Imagenes_Vida/2.jpeg" alt="Momento 2">
+        </div>
+        <div class="photo-item" onclick="openLightbox(2)">
+            <img src="Imagenes_Vida/3.jpeg" alt="Momento 3">
+        </div>
+        <div class="photo-item" onclick="openLightbox(3)">
+            <img src="Imagenes_Vida/4.jpeg" alt="Momento 4">
+        </div>
+        <div class="photo-item" onclick="openLightbox(4)">
+            <img src="Imagenes_Vida/5.jpeg" alt="Momento 5">
+        </div>
+        <div class="photo-item" onclick="openLightbox(5)">
+            <img src="Imagenes_Vida/6.jpeg" alt="Momento 6">
+        </div>
+        <div class="photo-item" onclick="openLightbox(6)">
+            <img src="Imagenes_Vida/7.jpeg" alt="Momento 7">
+        </div>
+        <div class="photo-item" onclick="openLightbox(7)">
+            <img src="Imagenes_Vida/8.jpeg" alt="Momento 8">
+        </div>
+    </div>
+
     <!-- Pantalla de Itinerario -->
     <div id="horario-secreto">
         <h2>¡Itinerario de Amor!</h2>
         <p class="subtitle-itinerario">Un día especial para nosotros ❤️</p>
+
         <div class="item"><b>🌸 Flores y Sorpresas</b><br><small>Algo especial te espera</small></div>
         <div class="item"><b>☕ Cafecito y Postre</b><br><small>Momento dulce juntos</small></div>
         <div class="item"><b>🎬 Película Romántica</b><br><small>Abrazaditos viendo algo bonito</small></div>
-        <div class="item"><b>🍽️ Cena Especial</b><br><small>Tu comida favorita</small></div>
         <div class="item"><b>🔥 SETSITO</b><br><small>(Opcional pero muy tentador 😏)</small></div>
+        <div class="item"><b>Te amare siempre</b><br><small>(Mi amor, me encanta tu sonrisa, que ilumina cada rincón de
+                mi día, y tu mirada,
+                que siempre transmite tanto cariño. Siento que a tu lado puedo ser yo mismo, sin máscaras ni miedos, y
+                esa es una de las cosas más maravillosas que me das. Por eso te quería decir, gracias.)</small></div>
         <button class="btn-cerrar" onclick="location.reload()">Cerrar ❌</button>
+    </div>
+
+    <!-- Lightbox para ver fotos en grande -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+        <div class="lightbox-prev" onclick="event.stopPropagation(); changeLightboxImage(-1)">‹</div>
+        <img id="lightbox-img" src="" alt="Foto" onclick="event.stopPropagation()">
+        <div class="lightbox-next" onclick="event.stopPropagation(); changeLightboxImage(1)">›</div>
     </div>
 
     <script>
@@ -919,6 +1220,7 @@
         function si() {
             document.getElementById('box').style.display = 'none';
             document.getElementById('horario-secreto').style.display = 'block';
+            document.getElementById('photoFan').style.display = 'block';
 
             // Lluvia de emojis más intensa
             const emojis = ['🌹', '🌷', '🌸', '💖', '💕', '✨', '💗', '🌺', '💝', '❤️', '💓', '🌼'];
@@ -954,6 +1256,49 @@
                 }, i * 30);
             }
         }
+
+        // Galería de fotos - Variables
+        const photoUrls = [
+            'Imagenes_Vida/1.jpeg',
+            'Imagenes_Vida/2.jpeg',
+            'Imagenes_Vida/3.jpeg',
+            'Imagenes_Vida/4.jpeg',
+            'Imagenes_Vida/5.jpeg',
+            'Imagenes_Vida/6.jpeg',
+            'Imagenes_Vida/7.jpeg',
+            'Imagenes_Vida/8.jpeg'
+        ];
+        let currentImageIndex = 0;
+
+        // Abrir lightbox
+        function openLightbox(index) {
+            currentImageIndex = index;
+            document.getElementById('lightbox-img').src = photoUrls[index];
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        // Cerrar lightbox
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // Cambiar imagen en lightbox
+        function changeLightboxImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = photoUrls.length - 1;
+            if (currentImageIndex >= photoUrls.length) currentImageIndex = 0;
+            document.getElementById('lightbox-img').src = photoUrls[currentImageIndex];
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') changeLightboxImage(-1);
+                if (e.key === 'ArrowRight') changeLightboxImage(1);
+            }
+        });
     </script>
 </body>
 
